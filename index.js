@@ -82,19 +82,23 @@ class Car {
     this.odometer = 0;
   }
   fill(gallons){
-    this.tank = this.tank+gallons;
+    this.tank += gallons;
   }
-//   drive(distance){
-//     for (let i = this.tank; i> 0; i-= this.milesPerGallon){
-//       if(this.tank<=0){
-//         return `I ran out of fuel at ${this.odometer} miles`
-//       }
-//       else{
-//         this.odometer = this.odometer + distance;
-//         this.tank = this.tank - (distance/this.milesPerGallon)
-//       }
-//     }
-//   }
+  drive(distance){
+    for (let i = 0; i < (distance/this.milesPerGallon) ; i++){
+      if(this.tank<=0){
+        return `I ran out of fuel at ${this.odometer} miles`;
+      }
+      else if(this.tank>= 1){
+        this.odometer += this.milesPerGallon;
+        this.tank --;
+      }
+      else {
+        //this.odometer += (this.tank*this.milesPerGallon);
+        this.tank = 0;
+      }
+    }
+  }
 }
 
 /*
