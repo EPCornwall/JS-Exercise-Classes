@@ -85,16 +85,22 @@ class Car {
     this.tank += gallons;
   }
   drive(distance){
-    for (let i = 0; i < (distance/this.milesPerGallon) ; i++){
+    let trip = distance;
+    for (let i = 0; i < (distance/this.milesPerGallon) +1 ; i++){
       if(this.tank<=0){
         return `I ran out of fuel at ${this.odometer} miles`;
       }
-      else if(this.tank>= 1){
+      else if(this.tank >= 1 && trip >= this.milesPerGallon){ // this is running too many times
+        trip -= this.milesPerGallon
         this.odometer += this.milesPerGallon;
         this.tank --;
       }
+      else if(this.tank >= 1){
+        this.odometer += trip
+        this.tank -= (trip*this.milesPerGallon)
+      }
       else {
-        //this.odometer += (this.tank*this.milesPerGallon);
+        this.odometer += (this.tank*this.milesPerGallon);
         this.tank = 0;
       }
     }
